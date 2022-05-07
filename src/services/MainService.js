@@ -82,6 +82,7 @@ class MainService {
   #transformData(data) {
     return {
       city: data.location.name,
+      temperature: data.current.temperature,
     };
   }
 
