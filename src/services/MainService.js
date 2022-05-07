@@ -84,9 +84,10 @@ class MainService {
       city: data.location.name,
       temperature: data.current.temperature,
       weatherDescription: data.current.weather_descriptions[0],
-      properties: {
+      weatherProperties: {
         cloudcover: data.current.cloudcover,
         humidity: data.current.humidity,
+        windSpeed: data.current.wind_speed,
       },
     };
   }
