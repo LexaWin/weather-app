@@ -86,6 +86,7 @@ class MainService {
       weatherDescription: data.current.weather_descriptions[0],
       properties: {
         cloudcover: data.current.cloudcover,
+        humidity: data.current.humidity,
       },
     };
   }
