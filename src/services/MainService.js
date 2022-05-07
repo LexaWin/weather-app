@@ -83,6 +83,10 @@ class MainService {
     return {
       city: data.location.name,
       temperature: data.current.temperature,
+      weatherDescription: data.current.weather_descriptions[0],
+      properties: {
+        cloudcover: data.current.cloudcover,
+      },
     };
   }
 
