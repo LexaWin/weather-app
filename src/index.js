@@ -1,6 +1,8 @@
 import { render } from 'react-dom';
 import MainService from './services/MainService';
 
+import './index.css';
+
 const mainService = new MainService();
 const weather = mainService.getWeather();
 const {
