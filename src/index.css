@@ -20,3 +20,24 @@ body {
   top: 50%;
   transform: translate(-50%, -50%);
 }
+
+.main {
+  padding: 18px;
+}
+
+.main h1 {
+  /* color: #ffffff; */
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.5;
+  margin-bottom: 28px;
+}
+
+.city-name {
+  background-color: #8781c5;
+  border-radius: 8px;
+  padding: 1px 8px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 35px;
+}

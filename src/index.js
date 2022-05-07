@@ -20,8 +20,12 @@ const {
 } = weather;
 
 const element = (
-  <div>
-    <h1>Weather Today in {city}</h1>
+  <main className="main">
+    <h1>
+      Weather Today in
+      <br />
+      <span className="city-name">{city}</span>
+    </h1>
     <p>{weatherDescription}</p>
     <p>{temperature}°</p>
     <ul>
@@ -55,7 +59,7 @@ const element = (
         <p>{visibility} km</p>
       </li>
     </ul>
-  </div>
+  </main>
 );
 
 const container = document.querySelector('.app');
