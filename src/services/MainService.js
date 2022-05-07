@@ -88,6 +88,7 @@ class MainService {
         cloudcover: data.current.cloudcover,
         humidity: data.current.humidity,
         windSpeed: data.current.wind_speed,
+        uvIndex: data.current.uv_index,
       },
     };
   }

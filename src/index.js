@@ -7,7 +7,7 @@ const {
   city,
   temperature,
   weatherDescription,
-  weatherProperties: { cloudcover, humidity, windSpeed },
+  weatherProperties: { cloudcover, humidity, windSpeed, uvIndex },
 } = weather;
 
 const element = (
@@ -29,6 +29,11 @@ const element = (
       <li>
         <h3>wind speed</h3>
         <p>{windSpeed} km/h</p>
+      </li>
+
+      <li>
+        <h3>uv index</h3>
+        <p>{uvIndex}</p>
       </li>
     </ul>
   </div>
