@@ -90,6 +90,7 @@ class MainService {
         windSpeed: data.current.wind_speed,
         pressure: data.current.pressure,
         uvIndex: data.current.uv_index,
+        visibility: data.current.visibility,
       },
     };
   }
