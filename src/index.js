@@ -30,35 +30,35 @@ const element = (
       <p className="weather-description">{weatherDescription}</p>
       <p className="temperature">{temperature}°</p>
     </div>
-    <ul>
-      <li>
-        <h3>cloudcover</h3>
-        <p>{cloudcover}%</p>
+    <ul className="properties">
+      <li className="property">
+        <h3 className="property-name">cloudcover</h3>
+        <p className="property-value">{cloudcover}%</p>
       </li>
 
-      <li>
-        <h3>humidity</h3>
-        <p>{humidity}%</p>
+      <li className="property">
+        <h3 className="property-name">humidity</h3>
+        <p className="property-value">{humidity}%</p>
       </li>
 
-      <li>
-        <h3>wind speed</h3>
-        <p>{windSpeed} km/h</p>
+      <li className="property">
+        <h3 className="property-name">wind speed</h3>
+        <p className="property-value">{windSpeed} km/h</p>
       </li>
 
-      <li>
-        <h3>pressure</h3>
-        <p>{pressure} mbar</p>
+      <li className="property">
+        <h3 className="property-name">pressure</h3>
+        <p className="property-value">{pressure} mbar</p>
       </li>
 
-      <li>
-        <h3>uv index</h3>
-        <p>{uvIndex}</p>
+      <li className="property">
+        <h3 className="property-name">uv index</h3>
+        <p className="property-value">{uvIndex}</p>
       </li>
 
-      <li>
-        <h3>visibility</h3>
-        <p>{visibility} km</p>
+      <li className="property">
+        <h3 className="property-name">visibility</h3>
+        <p className="property-value">{visibility} km</p>
       </li>
     </ul>
   </main>
