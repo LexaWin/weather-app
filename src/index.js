@@ -26,8 +26,10 @@ const element = (
       <br />
       <span className="city-name">{city}</span>
     </h1>
-    <p>{weatherDescription}</p>
-    <p>{temperature}°</p>
+    <div className="main-properties">
+      <p className="weather-description">{weatherDescription}</p>
+      <p className="temperature">{temperature}°</p>
+    </div>
     <ul>
       <li>
         <h3>cloudcover</h3>
