@@ -3,6 +3,9 @@ import MainService from './services/MainService';
 
 import './index.css';
 
+import backDay from './img/backDay.svg';
+import backNight from './img/backNight.svg';
+
 const mainService = new MainService();
 const weather = mainService.getWeather();
 const {
@@ -17,12 +20,17 @@ const {
     uvIndex,
     visibility,
   },
+  isDay,
 } = weather;
 
+const mainBackground = `url(${
+  isDay ? backDay : backNight
+}) no-repeat top left/100%`;
+
 const element = (
-  <main className="main">
+  <main className="main" style={{ background: mainBackground }}>
     <h1>
-      Weather Today in
+      Weather Now in
       <br />
       <span className="city-name">{city}</span>
     </h1>

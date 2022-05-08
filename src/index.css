@@ -23,7 +23,7 @@ body {
 
 .main {
   padding: 18px;
-  /* color: #ffffff; */
+  color: #ffffff;
 }
 
 .main h1 {
@@ -49,7 +49,7 @@ body {
 }
 
 .weather-description {
-  padding-top: 72px;
+  padding-top: 70px;
   font-size: 25px;
   font-weight: 500;
 }

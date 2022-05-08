@@ -92,6 +92,7 @@ class MainService {
         uvIndex: data.current.uv_index,
         visibility: data.current.visibility,
       },
+      isDay: data.current.is_day === 'yes',
     };
   }
 
