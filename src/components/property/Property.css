@@ -5,6 +5,36 @@
   padding-left: 36px;
 }
 
+.property__cloudcover {
+  background: url('../../img/propertyIcons/cloudcover.png') no-repeat left top /
+    30px;
+}
+
+.property__humidity {
+  background: url('../../img/propertyIcons/humidity.png') no-repeat left top /
+    30px;
+}
+
+.property__wind-speed {
+  background: url('../../img/propertyIcons/wind_speed.png') no-repeat left top /
+    30px;
+}
+
+.property__pressure {
+  background: url('../../img/propertyIcons/pressure.png') no-repeat left top /
+    30px;
+}
+
+.property__uv-index {
+  background: url('../../img/propertyIcons/uv_index.png') no-repeat left top /
+    30px;
+}
+
+.property__visibility {
+  background: url('../../img/propertyIcons/visibility.png') no-repeat left top /
+    30px;
+}
+
 .property-name {
   font-size: 12px;
   font-weight: 300;
