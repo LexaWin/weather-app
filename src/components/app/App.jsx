@@ -1,5 +1,6 @@
 import MainService from '../../services/MainService';
 import Properties from '../properties/Properties';
+import WeatherDescription from '../weatherDescription/WeatherDescription';
 
 import './App.css';
 
@@ -20,7 +21,7 @@ function App() {
         <span className="city-name">{city}</span>
       </h1>
       <div className="main-properties">
-        <p className="weather-description">{weatherDescription}</p>
+        <WeatherDescription description={weatherDescription} />
         <p className="temperature">{temperature}°</p>
       </div>
       <Properties properties={weatherProperties} />

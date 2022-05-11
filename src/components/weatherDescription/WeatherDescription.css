@@ -1,0 +1,14 @@
+.weather-description {
+  padding-top: 70px;
+  font-size: 25px;
+  font-weight: 500;
+  background: url('../../img/weather.png') no-repeat top left / 64px;
+}
+
+.weather-description__overcast {
+  background-image: url('../../img/overcast.png');
+}
+
+.weather-description__clear {
+  background-image: url('../../img/clear.png');
+}
