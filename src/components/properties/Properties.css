@@ -1,0 +1,8 @@
+.properties {
+  color: #000000;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 20px;
+  padding-left: 50px;
+}
