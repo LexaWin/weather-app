@@ -97,7 +97,12 @@ class MainService {
   }
 
   getWeather(city) {
-    return this.#transformData(this.#dayData);
+    switch (city) {
+      case 'Los Angeles':
+        return this.#transformData(this.#nightData);
+      default:
+        return this.#transformData(this.#dayData);
+    }
   }
 }
 

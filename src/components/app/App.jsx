@@ -27,12 +27,24 @@ class App extends Component {
         isDay: undefined,
       },
     };
+
+    this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
     const weather = this.mainService.getWeather();
 
     this.setState({ weather });
+  }
+
+  handleClick() {
+    this.setState(({ weather: { city: prevCity } }) => {
+      const newCity = prevCity === 'Los Angeles' ? 'Kaluga' : 'Los Angeles';
+
+      const weather = this.mainService.getWeather(newCity);
+
+      return { weather };
+    });
   }
 
   render() {
@@ -47,7 +59,9 @@ class App extends Component {
         <h1>
           Weather Now in
           <br />
-          <span className="city-name">{city}</span>
+          <span className="city-name" onClick={this.handleClick}>
+            {city}
+          </span>
         </h1>
         <div className="main-properties">
           <WeatherDescription description={weatherDescription} />
