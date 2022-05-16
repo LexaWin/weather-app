@@ -96,7 +96,7 @@ class MainService {
     };
   }
 
-  getWeather(city) {
+  async getWeather(city) {
     switch (city) {
       case 'Los Angeles':
         return this.#transformData(this.#nightData);
