@@ -84,14 +84,14 @@ class MainService {
       city: data.location.name,
       temperature: data.current.temperature,
       weatherDescription: data.current.weather_descriptions[0],
-      weatherProperties: {
-        cloudcover: data.current.cloudcover,
-        humidity: data.current.humidity,
-        windSpeed: data.current.wind_speed,
-        pressure: data.current.pressure,
-        uvIndex: data.current.uv_index,
-        visibility: data.current.visibility,
-      },
+      weatherProperties: [
+        { name: 'cloudcover', value: data.current.cloudcover, unit: '%' },
+        { name: 'humidity', value: data.current.humidity, unit: '%' },
+        { name: 'wind speed', value: data.current.wind_speed, unit: ' km/h' },
+        { name: 'pressure', value: data.current.pressure, unit: ' mbar' },
+        { name: 'uv index', value: data.current.uv_index, unit: '' },
+        { name: 'visibility', value: data.current.visibility, unit: ' km' },
+      ],
       isDay: data.current.is_day === 'yes',
     };
   }
