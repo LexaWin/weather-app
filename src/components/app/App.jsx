@@ -2,6 +2,7 @@ import { Component } from 'react';
 import Main from '../main/Main';
 import Spinner from '../spinner/Spinner';
 import MainService from '../../services/MainService';
+import CitySelect from '../citySelect/CitySelect';
 
 import './App.css';
 
@@ -12,7 +13,8 @@ class App extends Component {
     this.mainService = new MainService();
 
     this.state = {
-      loading: true,
+      select: true,
+      loading: false,
       weather: null,
     };
 
@@ -23,16 +25,20 @@ class App extends Component {
     this.setState({ loading: false, weather });
   }
 
-  componentDidMount() {
-    this.mainService.getWeather().then(this.onWeatherLoaded);
-  }
-
   render() {
-    const { loading, weather } = this.state;
+    const { select, loading, weather } = this.state;
 
-    const element = loading ? <Spinner /> : <Main weather={weather} />;
+    const citySelect = select ? <CitySelect /> : null;
+    const spinner = loading ? <Spinner /> : null;
+    const main = weather && !loading ? <Main weather={weather} /> : null;
 
-    return element;
+    return (
+      <>
+        {citySelect}
+        {spinner}
+        {main}
+      </>
+    );
   }
 }
 
