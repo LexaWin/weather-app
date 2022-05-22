@@ -28,7 +28,7 @@ class CitySelect extends Component {
   render() {
     return (
       <div className="city-input">
-        <button className="btn-close">
+        <button className="btn-close" onClick={this.props.handleClose}>
           <img src={btn} alt="Close" width="25" />
         </button>
 

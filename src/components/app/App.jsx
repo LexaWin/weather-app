@@ -21,6 +21,7 @@ class App extends Component {
     this.onWeatherLoaded = this.onWeatherLoaded.bind(this);
     this.onCityInputed = this.onCityInputed.bind(this);
     this.onCityClick = this.onCityClick.bind(this);
+    this.onCityInputClose = this.onCityInputClose.bind(this);
   }
 
   onWeatherLoaded(weather) {
@@ -37,11 +38,18 @@ class App extends Component {
     this.setState({ input: true });
   }
 
+  onCityInputClose() {
+    this.setState({ input: false });
+  }
+
   render() {
     const { input, loading, weather } = this.state;
 
     const cityInput = input ? (
-      <CityInput handleInput={this.onCityInputed} />
+      <CityInput
+        handleInput={this.onCityInputed}
+        handleClose={this.onCityInputClose}
+      />
     ) : null;
     const spinner = loading ? <Spinner /> : null;
     const main = weather ? (
