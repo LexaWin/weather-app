@@ -22,6 +22,7 @@ class CitySelect extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    this.props.handleInput(this.state.value);
   }
 
   render() {
