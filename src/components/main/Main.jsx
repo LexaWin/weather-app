@@ -4,8 +4,16 @@ import WeatherDescription from '../weatherDescription/WeatherDescription';
 import './Main.css';
 
 function Main(props) {
-  const { city, temperature, weatherDescription, weatherProperties, isDay } =
-    props.weather;
+  const {
+    weather: {
+      city,
+      temperature,
+      weatherDescription,
+      weatherProperties,
+      isDay,
+    },
+    handleClick,
+  } = props;
 
   let mainClassName = 'main';
   if (isDay) mainClassName += ' main__day';
@@ -15,7 +23,9 @@ function Main(props) {
       <h1>
         The Weather Now in
         <br />
-        <span className="city-name">{city}</span>
+        <span className="city-name" onClick={handleClick}>
+          {city}
+        </span>
       </h1>
       <div className="main-properties">
         <WeatherDescription description={weatherDescription} />
