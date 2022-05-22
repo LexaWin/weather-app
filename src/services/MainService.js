@@ -79,6 +79,9 @@ class MainService {
     },
   };
 
+  URL =
+    'http://api.weatherstack.com/current?access_key=918b7030f1eb44350aa0b549a842d49f';
+
   #transformData(data) {
     return {
       city: data.location.name,
@@ -97,12 +100,16 @@ class MainService {
   }
 
   async getWeather(city) {
-    switch (city) {
-      case 'Los Angeles':
-        return this.#transformData(this.#nightData);
-      default:
-        return this.#transformData(this.#dayData);
-    }
+    const response = await fetch(`${this.URL}&query=${city}`);
+    const data = await response.json();
+
+    return this.#transformData(data);
+    // switch (city) {
+    //   case 'Los Angeles':
+    //     return this.#transformData(this.#nightData);
+    //   default:
+    //     return this.#transformData(this.#dayData);
+    // }
   }
 }
 
