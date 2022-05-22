@@ -1,6 +1,6 @@
 import { Component } from 'react';
 
-import './CitySelect.css';
+import './CityInput.css';
 
 import btn from '../../img/btn-close.svg';
 
@@ -26,7 +26,7 @@ class CitySelect extends Component {
 
   render() {
     return (
-      <main className="city-select">
+      <main className="city-input">
         <button className="btn-close">
           <img src={btn} alt="Close" width="25" />
         </button>

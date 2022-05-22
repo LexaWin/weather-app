@@ -2,7 +2,7 @@ import { Component } from 'react';
 import Main from '../main/Main';
 import Spinner from '../spinner/Spinner';
 import MainService from '../../services/MainService';
-import CitySelect from '../citySelect/CitySelect';
+import CityInput from '../cityInput/CityInput';
 
 import './App.css';
 
@@ -28,13 +28,13 @@ class App extends Component {
   render() {
     const { select, loading, weather } = this.state;
 
-    const citySelect = select ? <CitySelect /> : null;
+    const cityInput = select ? <CityInput /> : null;
     const spinner = loading ? <Spinner /> : null;
     const main = weather && !loading ? <Main weather={weather} /> : null;
 
     return (
       <>
-        {citySelect}
+        {cityInput}
         {spinner}
         {main}
       </>
