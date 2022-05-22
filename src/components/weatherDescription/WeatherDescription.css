@@ -12,3 +12,15 @@
 .weather-description__clear {
   background-image: url('../../img/clear.png');
 }
+
+.weather-description__sunny {
+  background-image: url('../../img/sunny.png');
+}
+
+.weather-description__light-rain {
+  background-image: url('../../img/light-rain.png');
+}
+
+.weather-description__partly-cloudy {
+  background-image: url('../../img/partly-cloudy.png');
+}

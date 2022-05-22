@@ -86,7 +86,7 @@ class MainService {
     return {
       city: data.location.name,
       temperature: data.current.temperature,
-      weatherDescription: data.current.weather_descriptions[0],
+      weatherDescription: data.current.weather_descriptions[0].split(', ')[0],
       weatherProperties: [
         { name: 'cloudcover', value: data.current.cloudcover, unit: '%' },
         { name: 'humidity', value: data.current.humidity, unit: '%' },

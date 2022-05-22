@@ -1,7 +1,8 @@
 import './WeatherDescription.css';
 
 function WeatherDescription({ description }) {
-  const className = `weather-description weather-description__${description.toLowerCase()}`;
+  const transformedDescription = description.toLowerCase().replace(' ', '-');
+  const className = `weather-description weather-description__${transformedDescription}`;
 
   return <p className={className}>{description}</p>;
 }
