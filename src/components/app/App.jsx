@@ -13,7 +13,7 @@ class App extends Component {
     this.mainService = new MainService();
 
     this.state = {
-      select: true,
+      input: true,
       loading: false,
       weather: null,
     };
@@ -26,9 +26,9 @@ class App extends Component {
   }
 
   render() {
-    const { select, loading, weather } = this.state;
+    const { input, loading, weather } = this.state;
 
-    const cityInput = select ? <CityInput /> : null;
+    const cityInput = input ? <CityInput /> : null;
     const spinner = loading ? <Spinner /> : null;
     const main = weather && !loading ? <Main weather={weather} /> : null;
 

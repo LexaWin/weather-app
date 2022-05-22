@@ -26,7 +26,7 @@ class CitySelect extends Component {
 
   render() {
     return (
-      <main className="city-input">
+      <div className="city-input">
         <button className="btn-close">
           <img src={btn} alt="Close" width="25" />
         </button>
@@ -44,7 +44,7 @@ class CitySelect extends Component {
             OK
           </button>
         </form>
-      </main>
+      </div>
     );
   }
 }
