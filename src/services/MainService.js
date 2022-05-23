@@ -79,7 +79,7 @@ class MainService {
     },
   };
 
-  URL =
+  #URL =
     'http://api.weatherstack.com/current?access_key=918b7030f1eb44350aa0b549a842d49f';
 
   #transformData(data) {
@@ -100,7 +100,7 @@ class MainService {
   }
 
   async getWeather(city) {
-    const response = await fetch(`${this.URL}&query=${city}`);
+    const response = await fetch(`${this.#URL}&query=${city}`);
     const data = await response.json();
 
     return this.#transformData(data);

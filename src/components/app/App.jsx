@@ -39,6 +39,8 @@ class App extends Component {
   }
 
   onCityInputClose() {
+    if (!this.state.weather) return;
+
     this.setState({ input: false });
   }
 
