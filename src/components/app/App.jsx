@@ -31,7 +31,10 @@ class App extends Component {
   onCityInputed(city) {
     this.setState({ input: false, loading: true });
 
-    this.mainService.getWeather(city).then(this.onWeatherLoaded);
+    this.mainService
+      .getWeather(city)
+      .then(this.onWeatherLoaded)
+      .catch(() => this.setState({ input: true, loading: false }));
   }
 
   onCityClick() {
