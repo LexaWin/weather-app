@@ -28,7 +28,7 @@ function Main(props) {
         </span>
       </h1>
       <div className="main-properties">
-        <WeatherDescription description={weatherDescription} />
+        <WeatherDescription description={weatherDescription} isDay={isDay} />
         <p className="temperature">{temperature}°</p>
       </div>
       <Properties properties={weatherProperties} />

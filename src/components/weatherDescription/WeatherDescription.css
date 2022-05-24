@@ -21,6 +21,22 @@
   background-image: url('../../img/light-rain.png');
 }
 
+.weather-description__light-rain-shower_night {
+  background-image: url('../../img/light-rain-shower_night.png');
+}
+
 .weather-description__partly-cloudy {
   background-image: url('../../img/partly-cloudy.png');
+}
+
+.weather-description__partly-cloudy_night {
+  background-image: url('../../img/partly-cloudy_night.png');
+}
+
+.weather-description__haze {
+  background-image: url('../../img/haze.png');
+}
+
+.weather-description__widespread-dust {
+  background-image: url('../../img/widespread-dust.png');
 }
