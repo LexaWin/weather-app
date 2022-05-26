@@ -25,6 +25,10 @@ class CitySelect extends Component {
     this.props.handleInput(this.state.value);
   }
 
+  componentDidMount() {
+    document.querySelector('.form-input').focus();
+  }
+
   render() {
     return (
       <div className="city-input">

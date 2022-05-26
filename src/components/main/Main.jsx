@@ -18,12 +18,25 @@ function Main(props) {
   let mainClassName = 'main';
   if (isDay) mainClassName += ' main__day';
 
+  function handleKeyDown(e) {
+    if (e.code !== 'Enter' && e.code !== 'Space') return;
+
+    e.preventDefault();
+
+    handleClick();
+  }
+
   return (
     <main className={mainClassName}>
       <h1>
         The Weather Now in
         <br />
-        <span className="city-name" onClick={handleClick}>
+        <span
+          className="city-name"
+          onClick={handleClick}
+          onKeyDown={handleKeyDown}
+          tabIndex="0"
+        >
           {city}
         </span>
       </h1>
