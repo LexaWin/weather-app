@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { useState } from 'react';
 import Main from '../main/Main';
 import Spinner from '../spinner/Spinner';
 import MainService from '../../services/MainService';
@@ -6,69 +6,56 @@ import CityInput from '../cityInput/CityInput';
 
 import './App.css';
 
-class App extends Component {
-  constructor(props) {
-    super(props);
+function App() {
+  const mainService = new MainService();
 
-    this.mainService = new MainService();
+  const [input, setInput] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [weather, setWeather] = useState(null);
 
-    this.state = {
-      input: true,
-      loading: false,
-      weather: null,
-    };
-
-    this.onWeatherLoaded = this.onWeatherLoaded.bind(this);
-    this.onCityInputed = this.onCityInputed.bind(this);
-    this.onCityClick = this.onCityClick.bind(this);
-    this.onCityInputClose = this.onCityInputClose.bind(this);
+  function onWeatherLoaded(weather) {
+    setLoading(false);
+    setWeather(weather);
   }
 
-  onWeatherLoaded(weather) {
-    this.setState({ loading: false, weather });
-  }
+  function onCityInputed(city) {
+    setInput(false);
+    setLoading(true);
 
-  onCityInputed(city) {
-    this.setState({ input: false, loading: true });
-
-    this.mainService
+    mainService
       .getWeather(city)
-      .then(this.onWeatherLoaded)
-      .catch(() => this.setState({ input: true, loading: false }));
+      .then(onWeatherLoaded)
+      .catch(() => {
+        setInput(true);
+        setLoading(false);
+      });
   }
 
-  onCityClick() {
-    this.setState({ input: true });
+  function onCityClick() {
+    setInput(true);
   }
 
-  onCityInputClose() {
-    if (!this.state.weather) return;
+  function onCityInputClose() {
+    if (!weather) return;
 
-    this.setState({ input: false });
+    setInput(false);
   }
 
-  render() {
-    const { input, loading, weather } = this.state;
+  const cityInput = input ? (
+    <CityInput handleInput={onCityInputed} handleClose={onCityInputClose} />
+  ) : null;
+  const spinner = loading ? <Spinner /> : null;
+  const main = weather ? (
+    <Main weather={weather} handleClick={onCityClick} />
+  ) : null;
 
-    const cityInput = input ? (
-      <CityInput
-        handleInput={this.onCityInputed}
-        handleClose={this.onCityInputClose}
-      />
-    ) : null;
-    const spinner = loading ? <Spinner /> : null;
-    const main = weather ? (
-      <Main weather={weather} handleClick={this.onCityClick} />
-    ) : null;
-
-    return (
-      <>
-        {cityInput}
-        {spinner}
-        {main}
-      </>
-    );
-  }
+  return (
+    <>
+      {cityInput}
+      {spinner}
+      {main}
+    </>
+  );
 }
 
 export default App;
