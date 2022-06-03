@@ -22,6 +22,10 @@
   background-image: url('../../img/light-rain.png');
 }
 
+.weather-description__light-rain-shower {
+  background-image: url('../../img/light-rain-shower.png');
+}
+
 .weather-description__light-rain-shower_night {
   background-image: url('../../img/light-rain-shower_night.png');
 }
