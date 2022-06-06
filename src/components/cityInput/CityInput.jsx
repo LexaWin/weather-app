@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { Component, createRef } from 'react';
 
 import './CityInput.css';
 
@@ -11,6 +11,8 @@ class CitySelect extends Component {
     this.state = {
       value: '',
     };
+
+    this.input = createRef();
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -26,7 +28,7 @@ class CitySelect extends Component {
   }
 
   componentDidMount() {
-    document.querySelector('.form-input').focus();
+    this.input.current.focus();
   }
 
   render() {
@@ -38,6 +40,7 @@ class CitySelect extends Component {
 
         <form className="form" onSubmit={this.handleSubmit}>
           <input
+            ref={this.input}
             type="text"
             value={this.state.value}
             onChange={this.handleChange}
