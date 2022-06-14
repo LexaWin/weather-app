@@ -7,6 +7,7 @@ import './index.css';
 const initialState = {
   input: true,
   loading: false,
+  weather: null,
 };
 
 const reducer = (state = initialState, action) => {
@@ -31,10 +32,11 @@ const reducer = (state = initialState, action) => {
         input: false,
       };
 
-    case 'LOADING_OFF':
+    case 'WEATHER':
       return {
         ...state,
         loading: false,
+        weather: action.payload,
       };
 
     case 'ON_CITY_CLICK':

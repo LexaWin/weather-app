@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import Main from '../main/Main';
 import Spinner from '../spinner/Spinner';
 import MainService from '../../services/MainService';
@@ -10,23 +9,15 @@ function App(props) {
   const mainService = new MainService();
 
   const { getState, dispatch } = props.store;
-  const { input, loading } = getState();
-  const [weather, setWeather] = useState(null);
-
-  function onWeatherLoaded(weather) {
-    dispatch({ type: 'LOADING_OFF' });
-    setWeather(weather);
-  }
+  const { input, loading, weather } = getState();
 
   function onCityInputed(city) {
     dispatch({ type: 'LOADING' });
 
     mainService
       .getWeather(city)
-      .then(onWeatherLoaded)
-      .catch(() => {
-        dispatch({ type: 'INPUT' });
-      });
+      .then((weather) => dispatch({ type: 'WEATHER', payload: weather }))
+      .catch(() => dispatch({ type: 'INPUT' }));
   }
 
   function onCityClick() {
