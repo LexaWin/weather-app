@@ -10,27 +10,26 @@ function App(props) {
   const mainService = new MainService();
 
   const {
-    state: { input },
+    state: { input, loading },
     dispatch,
   } = props;
-  const [loading, setLoading] = useState(false);
   const [weather, setWeather] = useState(null);
 
   function onWeatherLoaded(weather) {
-    setLoading(false);
+    dispatch({ type: 'LOADING_OFF' });
     setWeather(weather);
   }
 
   function onCityInputed(city) {
     dispatch({ type: 'INPUT_OFF' });
-    setLoading(true);
+    dispatch({ type: 'LOADING_ON' });
 
     mainService
       .getWeather(city)
       .then(onWeatherLoaded)
       .catch(() => {
         dispatch({ type: 'INPUT_ON' });
-        setLoading(false);
+        dispatch({ type: 'LOADING_OFF' });
       });
   }
 

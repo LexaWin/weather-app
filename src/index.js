@@ -5,6 +5,7 @@ import './index.css';
 
 const initialState = {
   input: true,
+  loading: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -19,6 +20,18 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         input: false,
+      };
+
+    case 'LOADING_ON':
+      return {
+        ...state,
+        loading: true,
+      };
+
+    case 'LOADING_OFF':
+      return {
+        ...state,
+        loading: false,
       };
 
     default:
