@@ -9,10 +9,8 @@ import './App.css';
 function App(props) {
   const mainService = new MainService();
 
-  const {
-    state: { input, loading },
-    dispatch,
-  } = props;
+  const { getState, dispatch } = props.store;
+  const { input, loading } = getState();
   const [weather, setWeather] = useState(null);
 
   function onWeatherLoaded(weather) {

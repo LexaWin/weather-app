@@ -1,5 +1,6 @@
 import { render } from 'react-dom';
 import App from './components/app/App';
+import { legacy_createStore as createStore } from 'redux';
 
 import './index.css';
 
@@ -47,13 +48,14 @@ const reducer = (state = initialState, action) => {
   }
 };
 
-let state;
+const store = createStore(reducer);
 
-const dispatch = (action) => {
-  state = reducer(state, action);
-  const element = <App state={state} dispatch={dispatch} />;
+const update = () => {
+  const element = <App store={store} />;
   const container = document.querySelector('.app');
   render(element, container);
 };
 
-dispatch({ type: '' });
+store.subscribe(update);
+
+update();
