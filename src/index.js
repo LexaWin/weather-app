@@ -7,23 +7,26 @@ const initialState = {
   input: true,
 };
 
-const reducer = (state, action) => {
-  if (action.type === 'INPUT_ON') {
-    return {
-      ...state,
-      input: true,
-    };
-  } else if (action.type === 'INPUT_OFF') {
-    return {
-      ...state,
-      input: false,
-    };
-  } else {
-    return state;
+const reducer = (state = initialState, action) => {
+  switch (action.type) {
+    case 'INPUT_ON':
+      return {
+        ...state,
+        input: true,
+      };
+
+    case 'INPUT_OFF':
+      return {
+        ...state,
+        input: false,
+      };
+
+    default:
+      return state;
   }
 };
 
-let state = initialState;
+let state;
 
 const dispatch = (action) => {
   state = reducer(state, action);
