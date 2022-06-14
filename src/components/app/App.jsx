@@ -21,20 +21,18 @@ function App(props) {
   }
 
   function onCityInputed(city) {
-    dispatch({ type: 'INPUT_OFF' });
-    dispatch({ type: 'LOADING_ON' });
+    dispatch({ type: 'LOADING' });
 
     mainService
       .getWeather(city)
       .then(onWeatherLoaded)
       .catch(() => {
-        dispatch({ type: 'INPUT_ON' });
-        dispatch({ type: 'LOADING_OFF' });
+        dispatch({ type: 'INPUT' });
       });
   }
 
   function onCityClick() {
-    dispatch({ type: 'INPUT_ON' });
+    dispatch({ type: 'ON_CITY_CLICK' });
   }
 
   function onCityInputClose() {

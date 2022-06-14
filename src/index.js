@@ -10,9 +10,10 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'INPUT_ON':
+    case 'INPUT':
       return {
         ...state,
+        loading: false,
         input: true,
       };
 
@@ -22,16 +23,23 @@ const reducer = (state = initialState, action) => {
         input: false,
       };
 
-    case 'LOADING_ON':
+    case 'LOADING':
       return {
         ...state,
         loading: true,
+        input: false,
       };
 
     case 'LOADING_OFF':
       return {
         ...state,
         loading: false,
+      };
+
+    case 'ON_CITY_CLICK':
+      return {
+        ...state,
+        input: true,
       };
 
     default:
