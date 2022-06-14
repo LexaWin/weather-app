@@ -6,10 +6,13 @@ import CityInput from '../cityInput/CityInput';
 
 import './App.css';
 
-function App() {
+function App(props) {
   const mainService = new MainService();
 
-  const [input, setInput] = useState(true);
+  const {
+    state: { input },
+    dispatch,
+  } = props;
   const [loading, setLoading] = useState(false);
   const [weather, setWeather] = useState(null);
 
@@ -19,26 +22,26 @@ function App() {
   }
 
   function onCityInputed(city) {
-    setInput(false);
+    dispatch({ type: 'INPUT_OFF' });
     setLoading(true);
 
     mainService
       .getWeather(city)
       .then(onWeatherLoaded)
       .catch(() => {
-        setInput(true);
+        dispatch({ type: 'INPUT_ON' });
         setLoading(false);
       });
   }
 
   function onCityClick() {
-    setInput(true);
+    dispatch({ type: 'INPUT_ON' });
   }
 
   function onCityInputClose() {
     if (!weather) return;
 
-    setInput(false);
+    dispatch({ type: 'INPUT_OFF' });
   }
 
   const cityInput = input ? (
