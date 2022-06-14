@@ -5,6 +5,12 @@ import CityInput from '../cityInput/CityInput';
 
 import './App.css';
 
+const actLoading = () => ({ type: 'LOADING' });
+const actWeather = (value) => ({ type: 'WEATHER', payload: value });
+const actInput = () => ({ type: 'INPUT' });
+const actOnCityClick = () => ({ type: 'ON_CITY_CLICK' });
+const actInputOff = () => ({ type: 'INPUT_OFF' });
+
 function App(props) {
   const mainService = new MainService();
 
@@ -12,22 +18,22 @@ function App(props) {
   const { input, loading, weather } = getState();
 
   function onCityInputed(city) {
-    dispatch({ type: 'LOADING' });
+    dispatch(actLoading());
 
     mainService
       .getWeather(city)
-      .then((weather) => dispatch({ type: 'WEATHER', payload: weather }))
-      .catch(() => dispatch({ type: 'INPUT' }));
+      .then((weather) => dispatch(actWeather(weather)))
+      .catch(() => dispatch(actInput()));
   }
 
   function onCityClick() {
-    dispatch({ type: 'ON_CITY_CLICK' });
+    dispatch(actOnCityClick());
   }
 
   function onCityInputClose() {
     if (!weather) return;
 
-    dispatch({ type: 'INPUT_OFF' });
+    dispatch(actInputOff());
   }
 
   const cityInput = input ? (
