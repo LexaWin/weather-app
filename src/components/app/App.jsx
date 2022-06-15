@@ -18,23 +18,25 @@ function App(props) {
   const { getState, dispatch } = props.store;
   const { input, loading, weather } = getState();
 
+  const actLoadingDispatch = () => dispatch(actLoading());
+  const actWeatherDispatch = (value) => dispatch(actWeather(value));
+  const actInputDispatch = () => dispatch(actInput());
+  const actOnCityClickDispatch = () => dispatch(actOnCityClick());
+  const actInputOffDispatch = () => dispatch(actInputOff());
+
   function onCityInputed(city) {
-    dispatch(actLoading());
+    actLoadingDispatch();
 
     mainService
       .getWeather(city)
-      .then((weather) => dispatch(actWeather(weather)))
-      .catch(() => dispatch(actInput()));
-  }
-
-  function onCityClick() {
-    dispatch(actOnCityClick());
+      .then(actWeatherDispatch)
+      .catch(actInputDispatch);
   }
 
   function onCityInputClose() {
     if (!weather) return;
 
-    dispatch(actInputOff());
+    actInputOffDispatch();
   }
 
   const cityInput = input ? (
@@ -42,7 +44,7 @@ function App(props) {
   ) : null;
   const spinner = loading ? <Spinner /> : null;
   const main = weather ? (
-    <Main weather={weather} handleClick={onCityClick} />
+    <Main weather={weather} handleClick={actOnCityClickDispatch} />
   ) : null;
 
   return (
