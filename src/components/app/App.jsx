@@ -2,14 +2,15 @@ import Main from '../main/Main';
 import Spinner from '../spinner/Spinner';
 import MainService from '../../services/MainService';
 import CityInput from '../cityInput/CityInput';
+import {
+  actLoading,
+  actWeather,
+  actInput,
+  actOnCityClick,
+  actInputOff,
+} from '../../actions';
 
 import './App.css';
-
-const actLoading = () => ({ type: 'LOADING' });
-const actWeather = (value) => ({ type: 'WEATHER', payload: value });
-const actInput = () => ({ type: 'INPUT' });
-const actOnCityClick = () => ({ type: 'ON_CITY_CLICK' });
-const actInputOff = () => ({ type: 'INPUT_OFF' });
 
 function App(props) {
   const mainService = new MainService();
