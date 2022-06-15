@@ -1,3 +1,4 @@
+import { bindActionCreators } from 'redux';
 import Main from '../main/Main';
 import Spinner from '../spinner/Spinner';
 import MainService from '../../services/MainService';
@@ -18,16 +19,11 @@ function App(props) {
   const { getState, dispatch } = props.store;
   const { input, loading, weather } = getState();
 
-  const bindActionCreator =
-    (creator, dispatch) =>
-    (...args) =>
-      dispatch(creator(...args));
-
-  const actLoadingDispatch = bindActionCreator(actLoading, dispatch);
-  const actWeatherDispatch = bindActionCreator(actWeather, dispatch);
-  const actInputDispatch = bindActionCreator(actInput, dispatch);
-  const actOnCityClickDispatch = bindActionCreator(actOnCityClick, dispatch);
-  const actInputOffDispatch = bindActionCreator(actInputOff, dispatch);
+  const actLoadingDispatch = bindActionCreators(actLoading, dispatch);
+  const actWeatherDispatch = bindActionCreators(actWeather, dispatch);
+  const actInputDispatch = bindActionCreators(actInput, dispatch);
+  const actOnCityClickDispatch = bindActionCreators(actOnCityClick, dispatch);
+  const actInputOffDispatch = bindActionCreators(actInputOff, dispatch);
 
   function onCityInputed(city) {
     actLoadingDispatch();
