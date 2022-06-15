@@ -3,13 +3,7 @@ import Main from '../main/Main';
 import Spinner from '../spinner/Spinner';
 import MainService from '../../services/MainService';
 import CityInput from '../cityInput/CityInput';
-import {
-  actLoading,
-  actWeather,
-  actInput,
-  actOnCityClick,
-  actInputOff,
-} from '../../actions';
+import * as actions from '../../actions';
 
 import './App.css';
 
@@ -18,37 +12,19 @@ function App(props) {
 
   const { getState, dispatch } = props.store;
   const { input, loading, weather } = getState();
-
-  const {
-    actLoadingDispatch,
-    actWeatherDispatch,
-    actInputDispatch,
-    actOnCityClickDispatch,
-    actInputOffDispatch,
-  } = bindActionCreators(
-    {
-      actLoadingDispatch: actLoading,
-      actWeatherDispatch: actWeather,
-      actInputDispatch: actInput,
-      actOnCityClickDispatch: actOnCityClick,
-      actInputOffDispatch: actInputOff,
-    },
-    dispatch
-  );
+  const { actLoading, actWeather, actInput, actOnCityClick, actInputOff } =
+    bindActionCreators(actions, dispatch);
 
   function onCityInputed(city) {
-    actLoadingDispatch();
+    actLoading();
 
-    mainService
-      .getWeather(city)
-      .then(actWeatherDispatch)
-      .catch(actInputDispatch);
+    mainService.getWeather(city).then(actWeather).catch(actInput);
   }
 
   function onCityInputClose() {
     if (!weather) return;
 
-    actInputOffDispatch();
+    actInputOff();
   }
 
   const cityInput = input ? (
@@ -56,7 +32,7 @@ function App(props) {
   ) : null;
   const spinner = loading ? <Spinner /> : null;
   const main = weather ? (
-    <Main weather={weather} handleClick={actOnCityClickDispatch} />
+    <Main weather={weather} handleClick={actOnCityClick} />
   ) : null;
 
   return (
