@@ -19,11 +19,22 @@ function App(props) {
   const { getState, dispatch } = props.store;
   const { input, loading, weather } = getState();
 
-  const actLoadingDispatch = bindActionCreators(actLoading, dispatch);
-  const actWeatherDispatch = bindActionCreators(actWeather, dispatch);
-  const actInputDispatch = bindActionCreators(actInput, dispatch);
-  const actOnCityClickDispatch = bindActionCreators(actOnCityClick, dispatch);
-  const actInputOffDispatch = bindActionCreators(actInputOff, dispatch);
+  const {
+    actLoadingDispatch,
+    actWeatherDispatch,
+    actInputDispatch,
+    actOnCityClickDispatch,
+    actInputOffDispatch,
+  } = bindActionCreators(
+    {
+      actLoadingDispatch: actLoading,
+      actWeatherDispatch: actWeather,
+      actInputDispatch: actInput,
+      actOnCityClickDispatch: actOnCityClick,
+      actInputOffDispatch: actInputOff,
+    },
+    dispatch
+  );
 
   function onCityInputed(city) {
     actLoadingDispatch();
