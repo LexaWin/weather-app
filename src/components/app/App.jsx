@@ -1,12 +1,12 @@
 import Main from '../main/Main';
 import Spinner from '../spinner/Spinner';
 import CityInput from '../cityInput/CityInput';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import './App.css';
 
-function App(props) {
-  const { input, loading, weather } = props;
+function App() {
+  const { input, loading, weather } = useSelector((state) => state);
 
   return (
     <>
@@ -17,10 +17,4 @@ function App(props) {
   );
 }
 
-const mapStateToProps = (state) => ({
-  input: state.input,
-  loading: state.loading,
-  weather: state.weather,
-});
-
-export default connect(mapStateToProps)(App);
+export default App;

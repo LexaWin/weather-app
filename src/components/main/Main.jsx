@@ -1,11 +1,11 @@
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { actOnCityClick } from '../../actions';
 import Properties from '../properties/Properties';
 import WeatherDescription from '../weatherDescription/WeatherDescription';
 
 import './Main.css';
 
-function Main(props) {
+function Main() {
   const {
     weather: {
       city,
@@ -14,8 +14,8 @@ function Main(props) {
       weatherProperties,
       isDay,
     },
-    actOnCityClick,
-  } = props;
+  } = useSelector((state) => state);
+  const dispatch = useDispatch();
 
   let mainClassName = 'main';
   if (isDay) mainClassName += ' main__day';
@@ -25,7 +25,7 @@ function Main(props) {
 
     e.preventDefault();
 
-    actOnCityClick();
+    dispatch(actOnCityClick());
   }
 
   return (
@@ -35,7 +35,7 @@ function Main(props) {
         <br />
         <span
           className="city-name"
-          onClick={actOnCityClick}
+          onClick={() => dispatch(actOnCityClick())}
           onKeyDown={handleKeyDown}
           tabIndex="0"
         >
@@ -51,8 +51,4 @@ function Main(props) {
   );
 }
 
-const mapStateToProps = (state) => ({
-  weather: state.weather,
-});
-
-export default connect(mapStateToProps, { actOnCityClick })(Main);
+export default Main;

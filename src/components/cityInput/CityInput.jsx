@@ -6,44 +6,40 @@ import {
   actInputOff,
   actSetValue,
 } from '../../actions';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import MainService from '../../services/MainService';
 
 import './CityInput.css';
 
 import btn from '../../img/btn-close.svg';
 
-function CitySelect(props) {
+function CitySelect() {
   const mainService = new MainService();
 
-  const {
-    value,
-    weather,
-    actLoading,
-    actWeather,
-    actInput,
-    actInputOff,
-    actSetValue,
-  } = props;
+  const { value, weather } = useSelector((state) => state);
+  const dispatch = useDispatch();
 
   const input = createRef();
 
   function handleChange(e) {
-    actSetValue(e.target.value);
+    dispatch(actSetValue(e.target.value));
   }
 
   function handleSubmit(e) {
     e.preventDefault();
-    actLoading();
-    mainService.getWeather(value).then(actWeather).catch(actInput);
-    actSetValue('');
+    dispatch(actLoading());
+    mainService
+      .getWeather(value)
+      .then((weather) => dispatch(actWeather(weather)))
+      .catch(() => dispatch(actInput()));
+    dispatch(actSetValue(''));
   }
 
   function handleClose() {
     if (!weather) return;
 
-    actSetValue('');
-    actInputOff();
+    dispatch(actSetValue(''));
+    dispatch(actInputOff());
   }
 
   useEffect(() => input.current.focus(), []);
@@ -72,15 +68,4 @@ function CitySelect(props) {
   );
 }
 
-const mapStateToProps = (state) => ({
-  value: state.value,
-  weather: state.weather,
-});
-
-export default connect(mapStateToProps, {
-  actLoading,
-  actWeather,
-  actInput,
-  actInputOff,
-  actSetValue,
-})(CitySelect);
+export default CitySelect;
