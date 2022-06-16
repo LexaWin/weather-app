@@ -1,3 +1,5 @@
+import { connect } from 'react-redux';
+import { actOnCityClick } from '../../actions';
 import Properties from '../properties/Properties';
 import WeatherDescription from '../weatherDescription/WeatherDescription';
 
@@ -12,7 +14,7 @@ function Main(props) {
       weatherProperties,
       isDay,
     },
-    handleClick,
+    actOnCityClick,
   } = props;
 
   let mainClassName = 'main';
@@ -23,7 +25,7 @@ function Main(props) {
 
     e.preventDefault();
 
-    handleClick();
+    actOnCityClick();
   }
 
   return (
@@ -33,7 +35,7 @@ function Main(props) {
         <br />
         <span
           className="city-name"
-          onClick={handleClick}
+          onClick={actOnCityClick}
           onKeyDown={handleKeyDown}
           tabIndex="0"
         >
@@ -49,4 +51,8 @@ function Main(props) {
   );
 }
 
-export default Main;
+const mapStateToProps = (state) => ({
+  weather: state.weather,
+});
+
+export default connect(mapStateToProps, { actOnCityClick })(Main);

@@ -1,25 +1,18 @@
 import Main from '../main/Main';
 import Spinner from '../spinner/Spinner';
 import CityInput from '../cityInput/CityInput';
-import { actOnCityClick } from '../../actions';
 import { connect } from 'react-redux';
 
 import './App.css';
 
 function App(props) {
-  const { input, loading, weather, actOnCityClick } = props;
-
-  const cityInput = input ? <CityInput /> : null;
-  const spinner = loading ? <Spinner /> : null;
-  const main = weather ? (
-    <Main weather={weather} handleClick={actOnCityClick} />
-  ) : null;
+  const { input, loading, weather } = props;
 
   return (
     <>
-      {cityInput}
-      {spinner}
-      {main}
+      {input ? <CityInput /> : null}
+      {loading ? <Spinner /> : null}
+      {weather ? <Main /> : null}
     </>
   );
 }
@@ -30,6 +23,4 @@ const mapStateToProps = (state) => ({
   weather: state.weather,
 });
 
-export default connect(mapStateToProps, {
-  actOnCityClick,
-})(App);
+export default connect(mapStateToProps)(App);
