@@ -2,6 +2,7 @@ const initialState = {
   input: true,
   loading: false,
   weather: null,
+  value: '',
 };
 
 const reducer = (state = initialState, action) => {
@@ -37,6 +38,12 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         input: true,
+      };
+
+    case 'SET_VALUE':
+      return {
+        ...state,
+        value: action.payload,
       };
 
     default:

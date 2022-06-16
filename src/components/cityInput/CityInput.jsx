@@ -1,28 +1,56 @@
-import { useState, useEffect, createRef } from 'react';
+import { useEffect, createRef } from 'react';
+import {
+  actLoading,
+  actWeather,
+  actInput,
+  actInputOff,
+  actSetValue,
+} from '../../actions';
+import { connect } from 'react-redux';
+import MainService from '../../services/MainService';
 
 import './CityInput.css';
 
 import btn from '../../img/btn-close.svg';
 
 function CitySelect(props) {
-  const [value, setValue] = useState('');
+  const mainService = new MainService();
+
+  const {
+    value,
+    weather,
+    actLoading,
+    actWeather,
+    actInput,
+    actInputOff,
+    actSetValue,
+  } = props;
 
   const input = createRef();
 
   function handleChange(e) {
-    setValue(e.target.value);
+    actSetValue(e.target.value);
   }
 
   function handleSubmit(e) {
     e.preventDefault();
-    props.handleInput(value);
+    actLoading();
+    mainService.getWeather(value).then(actWeather).catch(actInput);
+    actSetValue('');
+  }
+
+  function handleClose() {
+    if (!weather) return;
+
+    actSetValue('');
+    actInputOff();
   }
 
   useEffect(() => input.current.focus(), []);
 
   return (
     <div className="city-input">
-      <button className="btn-close" onClick={props.handleClose}>
+      <button className="btn-close" onClick={handleClose}>
         <img src={btn} alt="Close" width="25" />
       </button>
 
@@ -44,4 +72,15 @@ function CitySelect(props) {
   );
 }
 
-export default CitySelect;
+const mapStateToProps = (state) => ({
+  value: state.value,
+  weather: state.weather,
+});
+
+export default connect(mapStateToProps, {
+  actLoading,
+  actWeather,
+  actInput,
+  actInputOff,
+  actSetValue,
+})(CitySelect);
