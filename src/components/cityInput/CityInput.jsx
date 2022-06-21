@@ -13,7 +13,7 @@ import './CityInput.css';
 
 import btn from '../../img/btn-close.svg';
 
-function CitySelect() {
+function CitySelect({ className }) {
   const mainService = new MainService();
 
   const { value, weather } = useSelector((state) => state);
@@ -45,7 +45,7 @@ function CitySelect() {
   useEffect(() => input.current.focus(), []);
 
   return (
-    <div className="city-input">
+    <div className={`city-input ${className}`}>
       <button className="btn-close" onClick={handleClose}>
         <img src={btn} alt="Close" width="25" />
       </button>

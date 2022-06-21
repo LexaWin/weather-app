@@ -6,6 +6,24 @@
   padding: 20px;
   display: flex;
   flex-direction: column;
+  transform: translateX(-100%);
+  transition: transform 300ms ease-in-out;
+}
+
+.city-input_entering {
+  transform: translateX(0);
+}
+
+.city-input_entered {
+  transform: translateX(0);
+}
+
+.city-input_exiting {
+  transform: translateX(-100%);
+}
+
+.city-input_exited {
+  transform: translateX(-100%);
 }
 
 .btn-close {
